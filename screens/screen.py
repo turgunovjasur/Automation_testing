@@ -15,6 +15,14 @@ class Screen:
         """
         self.driver = driver
 
+    # def check_platform_version(self):
+    #     if self.driver.capabilities["platformVersion"] == "10.0":
+    #         print("*************PLATFORM VERSION - ", self.driver.capabilities["platformVersion"])
+    #         return 10.0
+    #     else:
+    #         return 11.0
+
+    # get elements
     def get_element(self, locator):
         """
         Berilgan lokator bo'yicha bitta elementi oladi.
@@ -115,15 +123,19 @@ class Screen:
         elif method == 'ios':
             time.sleep(2)
             return WebDriverWait(self.driver, timeout=50).until(ec.visibility_of_all_elements_located((AppiumBy.IOS_UIAUTOMATION, value)))
+            # return self.driver.find_elements(MobileBy.IOS_UIAUTOMATION, value)
         elif method == 'class_name':
             time.sleep(3)
-            return WebDriverWait(self.driver, timeout=50).until(ec.visibility_of_all_elements_located((AppiumBy.CLASS_NAME, value)))
+            # return WebDriverWait(self.driver, timeout=50).until(ec.visibility_of_all_elements_located((AppiumBy.CLASS_NAME, value)))
+            return self.driver.find_elements(AppiumBy.CLASS_NAME, value)
         elif method == 'id':
             time.sleep(2)
             return WebDriverWait(self.driver, timeout=50).until(ec.visibility_of_all_elements_located((AppiumBy.ID, value)))
+            # return self.driver.find_elements(MobileBy.ID, value)
         elif method == 'xpath':
             time.sleep(2)
             return WebDriverWait(self.driver, timeout=50).until(ec.visibility_of_all_elements_located((AppiumBy.XPATH, value)))
+            # return self.driver.find_elements(MobileBy.XPATH, value)
         elif method == 'name':
             return WebDriverWait(self.driver, timeout=50).until(ec.visibility_of_all_elements_located((AppiumBy.NAME, value)))
         elif method == 'class_chain':
