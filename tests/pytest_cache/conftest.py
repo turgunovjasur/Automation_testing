@@ -17,6 +17,7 @@ def get_screenshot_on_failed_case(request):
                       name="failed_test",
                       attachment_type=AttachmentType.PNG)
 
+
 # Hook: Test natijasini saqlash uchun ishlatiladi
 @pytest.hookimpl(hookwrapper=True, tryfirst=True)
 def pytest_runtest_makereport(item, call):
@@ -63,18 +64,5 @@ def setup_virtual_device(request):
     # Teardown funksiyasi: Test tugagach, driverni to'xtatish
     def teardown():
         request.instance.driver.quit()  # Driverni to'xtatish
+
     request.addfinalizer(teardown)  # Teardown funksiyasini finalizerga qo'shish
-
-
-
-
-
-
-
-
-
-
-
-
-
-
